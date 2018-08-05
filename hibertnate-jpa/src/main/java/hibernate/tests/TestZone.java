@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import hibernate.models.Country;
 import hibernate.models.Zone;
 
 public class TestZone {
@@ -15,10 +16,13 @@ public class TestZone {
  	public static void main(String[] args) {
 		/* Create the persistence manager  */
  		EntityManager manager = factory.createEntityManager();
-		Zone zone = new Zone("Z1", "Zona Uno"); 
+		Zone zone = new Zone("Z1", "Zona Uno");
+		Country country = new Country("CO", "Colombia");
+		country.setZone(zone);
 		
 		manager.getTransaction().begin();
 		manager.persist(zone);
+		manager.persist(country);
 		manager.getTransaction().commit();
 		manager.close();
 		
@@ -28,7 +32,7 @@ public class TestZone {
 		manager.getTransaction().begin();
 		zone = manager.merge(zone);
 		zone.setName("Zona Uno Actualizada otra vez");
-		manager.remove(zone);
+//		manager.remove(zone);
 		manager.getTransaction().commit();
 		manager.close();
 		
@@ -53,6 +57,13 @@ public class TestZone {
 		
 		for (Zone zone:zones) {
 			 System.out.println(zone.toString());
+		}
+		
+		List<Country> countries = (List<Country>) manager.createQuery("FROM Country").getResultList();
+		System.out.println("Hay " + countries.size() + " paises en el sistema.");
+		
+		for (Country country:countries) {
+			System.out.print(country.toString());
 		}
 	}
 }
