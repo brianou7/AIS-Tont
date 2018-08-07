@@ -1,10 +1,12 @@
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { enableProdMode } from '@angular/core';
-
+import { environment } from './environments/environment';
 import { AppModule } from './app/app.module';
-import { environment } from './environments';
+import { BirdsService } from './app/birds.service';
+import { HttpModule } from '@angular/http';
 
-if( environment.production ) {
+if (environment.production) {
   enableProdMode();
 }
-platformBrowserDynamic().bootstrapModule(AppModule);
+
+platformBrowserDynamic().bootstrapModule(AppModule, [HttpModule]);

@@ -1,16 +1,8 @@
-/**************************************************************************
- *                      DO NOT MODIFY ANYTHING HERE                       *
- *  THIS FILE WILL BE REPLACED BY THE CORRESPONDING ENV FILE AT RUN TIME  *
- *         do env modifications @ ./environment.(dev/prod).ts             *
- *                                                                        *
- *     YOU NEED TO KEEP THE SAME STRUCTURE ACROSS ALL THE ENV FILES       *
- *   import this file in any of your components to access env variables   *
- **************************************************************************/
+// The file contents for the current environment will overwrite these during build.
+// The build system defaults to the dev environment which uses `environment.ts`, but if you do
+// `ng build --env=prod` then `environment.prod.ts` will be used instead.
+// The list of which env maps to which file can be found in `angular-cli.json`.
 
-export const environment: any = {
-  production: true,
-
-  service: {
-    api: '',
-  }
+export const environment = {
+  production: false
 };
